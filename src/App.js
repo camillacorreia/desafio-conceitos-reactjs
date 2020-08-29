@@ -13,7 +13,13 @@ function App() {
   }, []);
 
   async function handleAddRepository() {
-    // TODO
+    const response = await api.post('repositories', {
+      title: 'Camilla',
+      url: 'https://github.com/camilla/',
+      techs: ['React Native']
+    });
+
+    setRepositories([...repositories, response.data]);
   }
 
   async function handleRemoveRepository(id) {
@@ -26,7 +32,7 @@ function App() {
         {repositories.map(repository => (
           <li key={repository.id}>
             {repository.title}
-            
+
             <button onClick={() => handleRemoveRepository(1)}>
               Remover
             </button>
